@@ -1,0 +1,48 @@
+{
+  "name": "git-branch-notes",
+  "version": "1.0.0",
+  "description": "A CLI tool to help you to manage Git branch notes with remote synchronization",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": {
+    "git-bn": "./dist/bin/git-bn.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "git",
+    "branch",
+    "notes",
+    "cli",
+    "version-control"
+  ],
+  "author": "Bert <18262638107@163.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/git-branch-notes"
+  },
+  "homepage": "https://github.com/your-username/git-branch-notes#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/git-branch-notes/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "simple-git": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^4.0.0"
+  }
+}
