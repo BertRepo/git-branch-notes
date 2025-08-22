@@ -22,11 +22,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/git-branch-notes"
+    "url": "https://github.com/BertRepo/git-branch-notes"
   },
-  "homepage": "https://github.com/your-username/git-branch-notes#readme",
+  "homepage": "https://github.com/BertRepo/git-branch-notes#readme",
   "bugs": {
-    "url": "https://github.com/your-username/git-branch-notes/issues"
+    "url": "https://github.com/BertRepo/git-branch-notes/issues"
   },
   "engines": {
     "node": ">=16.0.0"
