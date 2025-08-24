@@ -61,3 +61,6 @@ git-bn get main
 + 🔄 Sync notes across multiple repositories (manual control)
 + 🌐 Remote synchronization support
 + 🎯 Simple and intuitive CLI interface
+
+## Example
+![Example](./assets/image.png)
