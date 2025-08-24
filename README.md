@@ -13,35 +13,51 @@ npm install -g git-branch-notes
 ```
 
 ## How to use
-### List all branches with notes after fetch remote
-
+### List all branches with notes (local and remote)
 ```bash
 git-bn list
+git-bn list -a ## show all branches, including those without notes --all参数
 ```
 
-### Set note for a branch
+### List only remote branches with notes
 ```bash
-git-bn set feature-branch "Working on new UI"
+git-bn list -r
+git-bn list --remote
 ```
 
-### Sync notes with remote, then someone of your repo can get it
+### List only local branches with notes  
+```bash
+git-bn list -l
+git-bn list --local
+```
+
+### Set note for a branch and sync to remote (default behavior)
+```bash
+git-bn set "Working on new feature" ## set note for current branch
+git-bn set -b feature-branch "Working on new feature"
+git-bn set --branch feature-branch "Working on new feature"
+```
+
+### Set note for a branch without syncing to remote
+```bash
+git-bn set -b feature-branch "Working on new feature" -n
+git-bn set --branch feature-branch "Working on new feature" --no-sync
+```
+
+### Fetch remote notes and push local notes, then someone of your repo can get it
 ```bash
 git-bn sync
 ```
 
-### Fetch notes from remote
+### Get note for a specific branch
 ```bash
-git-bn fetch-notes
-```
-
-### Show notes mapping
-```bash
-git-bn mapping
+git-bn get ## get note for current branch
+git-bn get main
 ```
 
 ## Features
 
 + 📝 Add notes to Git branches
++ 🔄 Sync notes across multiple repositories (manual control)
 + 🌐 Remote synchronization support
-+ 🎯 TypeScript support
-+ 📊 Detailed notes mapping
++ 🎯 Simple and intuitive CLI interface

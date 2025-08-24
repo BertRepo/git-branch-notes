@@ -1,5 +1,5 @@
-import { GitUtils } from './git-utils';
-import { BranchInfo } from './types';
+import { GitUtils } from "./git-utils";
+import { BranchInfo } from "./types";
 
 export class NoteManager {
   private gitUtils: GitUtils;
@@ -9,11 +9,9 @@ export class NoteManager {
   }
 
   async getAllBranchesWithNotes(): Promise<BranchInfo[]> {
-    await this.gitUtils.fetchNotes();
-    
     const branches = await this.gitUtils.getBranches();
     const branchesWithNotes = await Promise.all(
-      branches.map(async branch => {
+      branches.map(async (branch) => {
         const note = await this.gitUtils.getBranchNote(branch.name);
         return { ...branch, note };
       })
@@ -24,11 +22,22 @@ export class NoteManager {
 
   async setNote(branchName: string, note: string): Promise<void> {
     await this.gitUtils.setBranchNote(branchName, note);
-    await this.gitUtils.pushNotes();
   }
 
-  async syncNotes(): Promise<void> {
-    await this.gitUtils.fetchNotes();
-    await this.gitUtils.pushNotes();
+  async syncNotes(remote: string = "origin"): Promise<void> {
+    try {
+      // 先拉取远程notes
+      await this.gitUtils.fetchNotes(remote);
+
+      // 再推送本地notes到远程
+      await this.gitUtils.pushNotes(remote);
+    } catch (error: any) {
+      console.error("❌ Failed to sync notes:", error?.message);
+      throw error;
+    }
+  }
+
+  async fetchNotes(remote: string = "origin"): Promise<boolean> {
+    return this.gitUtils.fetchNotes(remote);
   }
 }
