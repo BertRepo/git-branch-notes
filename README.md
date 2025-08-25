@@ -1,8 +1,10 @@
 # Git Branch Notes
 
-**Read this in other languages: [English](README.md), [中文](README_zh.md).**
+**Read this in other languages: [Chinese](README_zh.md).**
 
 Welcome to use Git Branch Notes! A CLI tool for managing Git branch notes with remote synchronization.
+
+[npm package location](https://www.npmjs.com/package/git-branch-notes)
 
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 

@@ -1,7 +1,9 @@
 # Git Branch Notes（Git 分支备注工具）
-**其他语言: [English](README.md), [中文](README_zh.md).**
+**其他语言: [English](README.md).**
 
 欢迎使用 Git Branch Notes！这是一个用于管理 Git 分支备注并支持远程同步的命令行工具。
+
+[npm包仓库地址](https://www.npmjs.com/package/git-branch-notes)
 
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
