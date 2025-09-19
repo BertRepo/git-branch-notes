@@ -111,15 +111,6 @@ The tool automatically manages branch status changes:
 
 This ensures that your branch notes are always up-to-date with your repository structure.
 
-## Date Format
-
-All timestamps in the tool use the format: `YYYY-MM-DD HH:mm:ss` for consistency and readability.
-
-### Legacy sync command (no longer needed with file-based storage)
-```bash
-git-bn sync
-```
-
 ## Features
 
 + 📝 Add notes to Git branches

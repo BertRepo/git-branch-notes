@@ -57,7 +57,7 @@ git-bn list --remote
 git-bn list -l
 git-bn list --local
 ```
-# 设置分支备注
+### 设置分支备注
 ```bash
 git-bn set "正在开发新功能" ## 为当前分支设置备注
 git-bn set -b feature-branch "正在开发新功能"
@@ -80,11 +80,12 @@ git-bn push -m "更新分支备注" ## 使用自定义提交信息推送
 ```bash
 git-bn pull
 ```
-
-### 同步命令（为保持向后兼容性保留，实际上文件存储不需要同步操作）
+<!-- 
+### 同步命令
 ```bash
 git-bn sync
-```
+``` -->
+
 ### 获取特定分支的备注
 ```bash
 git-bn get ## 获取当前分支的备注
