@@ -4,40 +4,63 @@ import { BranchInfo } from "./types";
 export class NoteManager {
   private gitUtils: GitUtils;
 
-  constructor() {
-    this.gitUtils = new GitUtils();
+  constructor(repoPath: string = process.cwd()) {
+    this.gitUtils = new GitUtils(repoPath);
   }
 
+  // 获取所有分支信息及备注
   async getAllBranchesWithNotes(): Promise<BranchInfo[]> {
-    const branches = await this.gitUtils.getBranches();
-    const branchesWithNotes = await Promise.all(
-      branches.map(async (branch) => {
-        const note = await this.gitUtils.getBranchNote(branch.name);
-        return { ...branch, note };
-      })
-    );
-
-    return branchesWithNotes;
-  }
-
-  async setNote(branchName: string, note: string): Promise<void> {
-    await this.gitUtils.setBranchNote(branchName, note);
-  }
-
-  async syncNotes(remote: string = "origin"): Promise<void> {
     try {
-      // 先拉取远程notes
-      await this.gitUtils.fetchNotes(remote);
+      const branches = await this.gitUtils.getBranches();
+      return branches;
+    } catch (error) {
+      console.error("Error getting branches with notes:", error);
+      return [];
+    }
+  }
 
-      // 再推送本地notes到远程
-      await this.gitUtils.pushNotes(remote);
-    } catch (error: any) {
-      console.error("❌ Failed to sync notes:", error?.message);
+  // 设置分支备注
+  async setNote(branchName: string, note: string): Promise<void> {
+    try {
+      await this.gitUtils.setBranchNote(branchName, note);
+    } catch (error) {
+      console.error(`Error setting note for branch ${branchName}:`, error);
       throw error;
     }
   }
 
-  async fetchNotes(remote: string = "origin"): Promise<boolean> {
-    return this.gitUtils.fetchNotes(remote);
+  // 显示备注映射关系
+  async showNotesMapping(): Promise<string> {
+    return this.gitUtils.showNotesMapping();
+  }
+
+  // 检查并更新分支状态
+  async checkAndUpdateBranchStatus(): Promise<void> {
+    try {
+      await this.gitUtils.checkAndUpdateBranchStatus();
+    } catch (error) {
+      console.error("Error checking and updating branch status:", error);
+    }
+  }
+
+  // 将分支标记为已删除
+  async markBranchAsDeleted(branchName: string): Promise<void> {
+    try {
+      await this.gitUtils.markBranchAsDeleted(branchName);
+    } catch (error) {
+      console.error(`Error marking branch ${branchName} as deleted:`, error);
+    }
+  }
+
+  // 初始化分支的备注
+  async initBranches(
+    branchType: "remote" | "local" | "all" = "remote"
+  ): Promise<void> {
+    try {
+      await this.gitUtils.initBranches(branchType);
+    } catch (error) {
+      console.error("Error initializing branches:", error);
+      throw error;
+    }
   }
 }
